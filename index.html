@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fffaf7">
+<meta name="description" content="A little question, just for you."><title>A little date?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{font-family:'DM Sans',sans-serif;color:#332b29;background:#fffaf7;--pink:#ed8397;--muted:#a09390}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #e8a1b0;outline-offset:5px}[hidden]{display:none!important}
+main{min-height:100svh;display:grid;place-items:center;padding:40px 20px;text-align:center}.invitation{max-width:750px;width:100%}.heart{color:var(--pink);font-size:27px;display:block;margin-bottom:24px}h1{font:500 clamp(42px,7vw,76px)/1.1 Fraunces,serif;letter-spacing:-.055em;margin:0 0 35px}h1 em{font-weight:500;color:var(--pink)}.actions{display:flex;justify-content:center;align-items:center;gap:14px;min-height:54px}.yes,.no,.primary{border:0;border-radius:999px;padding:16px 25px;font-size:14px;white-space:nowrap}.yes,.primary{background:var(--pink);color:white;font-weight:600}.yes{position:relative;z-index:2;transition:transform .22s ease;transform-origin:center}.yes:hover,.primary:hover{background:#e67188}.no{border:1px solid #e9dfda;background:#fffaf7;color:#948780;z-index:10;touch-action:none;user-select:none}.quiet{display:inline-block;margin-top:30px;border:0;background:none;color:#c0b3ac;font-size:10px;text-decoration:underline;text-underline-offset:3px}.modal{position:fixed;inset:0;background:#46323030;backdrop-filter:blur(7px);z-index:30;display:grid;place-items:center;padding:20px}.card{position:relative;background:#fffaf7;border-radius:25px;width:min(430px,100%);padding:48px 30px 35px;text-align:center;max-height:92svh;overflow:auto;animation:pop .3s ease}.close{position:absolute;right:17px;top:12px;border:0;background:none;color:#b3a49b;font-size:23px}.card h2{font:500 clamp(32px,7vw,42px)/1.1 Fraunces,serif;letter-spacing:-.04em;margin:0 0 16px}.card p{font-size:14px;color:#a09390;line-height:1.6;margin:0 0 26px}.yay-heart{font-size:55px;display:block;margin:5px 0 24px;animation:bounce .9s ease infinite alternate}.dates{display:grid;gap:11px;margin:24px 0}.date-choice{display:flex;align-items:center;gap:13px;text-align:left;border:1px solid #e9dfda;border-radius:15px;padding:18px;cursor:pointer}.date-choice:has(input:checked){border-color:var(--pink);background:#fff0f3}.date-choice input{accent-color:var(--pink);margin:0;width:16px;height:16px}.date-choice strong{font-size:14px;font-weight:500;display:block;margin-bottom:4px}.date-choice small{font-size:12px;color:#a09390}.primary{width:100%}.primary:disabled{opacity:.55;cursor:wait}.status{font-size:12px!important;margin:15px 0 0!important}.fallback{font-size:12px;color:#bb6479;text-underline-offset:3px;display:inline-block;margin-top:15px}.confetti{position:fixed;inset:0;z-index:40;pointer-events:none;overflow:hidden}.confetti i{position:absolute;top:-20px;left:var(--x);background:var(--c);width:7px;height:11px;border-radius:2px;animation:fall var(--d) linear forwards}.thank-you{color:#a09390;font-size:13px}@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}@keyframes bounce{to{transform:translateY(-7px) rotate(5deg)}}@keyframes fall{to{transform:translateY(110vh) rotate(600deg)}}@media(max-width:430px){h1{font-size:43px}.yes,.no{font-size:12px;padding:14px 17px}.actions{gap:9px}.card{padding:44px 23px 28px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main><section class="invitation" aria-labelledby="question"><span class="heart" aria-hidden="true">♡</span><h1 id="question">Will you go on a<br><em>date</em> with me?</h1><div class="actions"><button class="yes" id="yes">Yes, let's go 💗</button><button class="no" id="no">Maybe another time</button></div><button class="quiet" id="decline">A real no? That's okay.</button><p id="declined" class="thank-you" hidden>Thank you for letting me know ♡</p></section></main>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="title" hidden><div class="card"><button class="close" id="close" aria-label="Close">×</button>
+<section id="celebration"><h2 id="title">YAYYYYY!</h2><span class="yay-heart" aria-hidden="true">💗</span><p>You just made my day.</p><button class="primary" id="next">Pick our date →</button></section>
+<form id="date-form" hidden><h2>It's a date.</h2><p>Which one sounds like us?</p><div class="dates"><label class="date-choice"><input type="radio" name="date" value="Friday evening — Dinner" required><span><strong>Friday evening</strong><small>Dinner</small></span></label><label class="date-choice"><input type="radio" name="date" value="Sunday — Orchestra + Dinner" required><span><strong>Sunday</strong><small>Orchestra + Dinner</small></span></label></div><button class="primary" id="send" type="submit">This one. Let's go 💗</button><p id="status" class="status" aria-live="polite"></p></form>
+<section id="confirmed" hidden><span class="yay-heart" aria-hidden="true">💗</span><h2>Can't wait.</h2><p id="chosen"></p><p class="status">Your choice is noted. See you soon 💗</p></section>
+</div></div><div class="confetti" id="confetti" aria-hidden="true"></div>
+<script>
+
+const yes=document.querySelector('#yes'),no=document.querySelector('#no'),modal=document.querySelector('#modal'),form=document.querySelector('#date-form');
+let attempts=0,accepted=false;
+const replies=['Are you sure? 🥺','Really, really sure?','Think about it 💭','But… dinner? 🍝','One tiny date?','My heart says yes 💗','Maybe means maybe yes?','What if I ask nicely?','I saved you a seat 🥹','You + me? ✨','Still thinking?','Okay, one more chance?'];
+function runAway(event){
+ if(accepted)return;
+ attempts++;yes.style.transform=`scale(${1+attempts*.12})`;
+ no.textContent=replies[(attempts-1)%replies.length];
+ document.body.appendChild(no);no.style.position='fixed';no.style.transform='';
+ const pad=22,w=no.offsetWidth,h=no.offsetHeight;
+ const maxX=Math.max(pad,innerWidth-w-pad),maxY=Math.max(pad,innerHeight-h-pad);
+ let x,y;
+ const originX=event?.clientX??innerWidth/2,originY=event?.clientY??innerHeight/2;
+ for(let i=0;i<30;i++){x=pad+Math.random()*(maxX-pad);y=pad+Math.random()*(maxY-pad);if(Math.hypot(x+w/2-originX,y+h/2-originY)>Math.min(190,innerWidth*.4))break;}
+ no.style.left=x+'px';no.style.top=y+'px';
+}
+no.addEventListener('pointerenter',runAway);
+no.addEventListener('pointerdown',e=>{e.preventDefault();if(e.pointerType!=='mouse')runAway(e)});
+no.addEventListener('click',e=>{e.preventDefault();runAway(e)});
+no.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();runAway(e)}});
+addEventListener('resize',()=>{if(no.style.position==='fixed'){no.style.left=Math.max(12,Math.min(parseFloat(no.style.left),innerWidth-no.offsetWidth-12))+'px';no.style.top=Math.max(12,Math.min(parseFloat(no.style.top),innerHeight-no.offsetHeight-12))+'px'}});
+function confetti(){const box=document.querySelector('#confetti');box.replaceChildren();for(let i=0;i<48;i++){const bit=document.createElement('i');bit.style.setProperty('--x',Math.random()*100+'%');bit.style.setProperty('--c',['#ed8397','#f7c6d0','#f5d88d'][i%3]);bit.style.setProperty('--d',(2+Math.random()*2)+'s');box.appendChild(bit)}setTimeout(()=>box.replaceChildren(),4200)}
+function open(){accepted=true;no.hidden=true;modal.hidden=false;document.querySelector('main').inert=true;document.querySelector('#close').focus();confetti()}
+function close(){modal.hidden=true;accepted=false;no.hidden=false;document.querySelector('main').inert=false;yes.focus()}
+yes.addEventListener('click',open);document.querySelector('#close').addEventListener('click',close);
+document.querySelector('#next').addEventListener('click',()=>{document.querySelector('#celebration').hidden=true;form.hidden=false;modal.setAttribute('aria-label','Choose our date');modal.removeAttribute('aria-labelledby');form.querySelector('input').focus()});
+document.querySelector('#decline').addEventListener('click',()=>{no.hidden=true;yes.hidden=true;document.querySelector('#decline').hidden=true;document.querySelector('#declined').hidden=false});
+modal.addEventListener('click',e=>{if(e.target===modal)close()});
+addEventListener('keydown',e=>{if(modal.hidden)return;if(e.key==='Escape')close();if(e.key==='Tab'){const els=[...modal.querySelectorAll('button,input,a[href]')].filter(el=>el.getClientRects().length&&!el.disabled);const first=els[0],last=els.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+form.addEventListener('submit',e=>{
+ e.preventDefault();const selection=new FormData(form).get('date');if(!selection)return;
+ form.hidden=true;document.querySelector('#confirmed').hidden=false;document.querySelector('#chosen').textContent=selection;confetti();
+});
+</script></body></html>
